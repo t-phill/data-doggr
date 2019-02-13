@@ -1,6 +1,6 @@
 import pandas as pd 
 import numpy as np 
-import os
+#import os
 import glob
 
 
@@ -9,26 +9,15 @@ import glob
 
 excel_names = glob.glob("/Users/taylorphillips/Downloads/*.xlsx")
 
-#test_names = glob.glob("/Users/taylorphillips/Downloads/*.xlsx")
-
-#print("######excel_names######", excel_names)
-
 excels = [pd.ExcelFile(name) for name in excel_names]
 
-#print(excels)
-
 frames = [x.parse(x.sheet_names[0], header=3) for x in excels]
-
-# print(type(frames[1]))
-# print(frames[1])
 
 frames[1:] = [df[1:] for df in frames[1:]]
 
 combined = pd.concat(frames)
 
 combined = combined[pd.notnull(combined['Well Type'])]
-
-#print(combined)
 
 #combined.to_excel("c.xlsx", header=True)
 
