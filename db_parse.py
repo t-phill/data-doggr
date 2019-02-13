@@ -17,7 +17,11 @@ frames[1:] = [df[1:] for df in frames[1:]]
 
 combined = pd.concat(frames)
 
-combined = combined[pd.notnull(combined['Well Type'])]
+combined.columns = combined.columns.str.replace(' ', '_').str.replace('(', '').str.replace(')', '')
+
+combined.columns = [x.lower() for x in combined.columns]
+
+combined = combined[pd.notnull(combined['well_type'])]
 
 #combined.to_excel("c.xlsx", header=True)
 

@@ -12,26 +12,26 @@ cur = conn.cursor()
 today = '2019-02-01'
 
 try:
-    cur.execute('DROP TABLE IF EXISTS Table;')
-    #cur.execute("CREATE TABLE test (id serial PRIMARY KEY, num integer, data varchar);")
-    cur.execute('''CREATE TABLE test ("API Number" VARCHAR(255),
-                                 "Production Date" VARCHAR(255),
-                                "Oil Produced (bbl)" VARCHAR(255),
-                                "Water Produced (bbl)" VARCHAR (255), 
-                                "Gas Produced (Mcf)" VARCHAR(255), 
-                                "Days Well Produced" VARCHAR(255), 
-                                "Gravity of Oil" VARCHAR(255), 
-                                "Casing Pressure" VARCHAR(255), 
-                                "Tubing Pressure" VARCHAR(255), BTU VARCHAR(255), 
-                                "Method of Operation" VARCHAR(255), 
-                                "Water Disposition" VARCHAR(255), 
-                                "PWT Status" VARCHAR(255), 
-                                "Well Type" VARCHAR(255), 
-                                Status VARCHAR(255), 
-                                "Pool Code" VARCHAR(255), 
-                                "Reported Date" DATE);''')
+    cur.execute('DROP TABLE IF EXISTS test;')
+    cur.execute('''CREATE TABLE test (api_number NUMERIC NOT NULL,
+                                 production_date VARCHAR(255),
+                                oil_produced_bbl NUMERIC,
+                                water_produced_bbl NUMERIC, 
+                                gas_produced_mcf NUMERIC, 
+                                days_well_produced NUMERIC, 
+                                gravity_of_oil NUMERIC, 
+                                casing_pressure NUMERIC, 
+                                tubing_pressure NUMERIC, 
+                                btu NUMERIC, 
+                                method_of_operation NUMERIC, 
+                                water_disposition NUMERIC, 
+                                pwt_status VARCHAR(255), 
+                                well_type VARCHAR(255), 
+                                status NUMERIC, 
+                                pool_code NUMERIC, 
+                                reported_date DATE);''')
 except:
-    print("Nope")
+    print("Nope didn't work")
 
 conn.commit() # <--- makes sure the change is shown in the database
 conn.close()

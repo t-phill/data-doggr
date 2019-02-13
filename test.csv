@@ -1,4 +1,4 @@
-API Number,Production Date,Oil Produced (bbl),Water Produced (bbl),Gas Produced (Mcf),Days Well Produced,Gravity of Oil,Casing Pressure,Tubing Pressure,BTU,Method of Operation,Water Disposition,PWT Status,Well Type,Status,Pool Code,Reported Date
+api_number,production_date,oil_produced_bbl,water_produced_bbl,gas_produced_mcf,days_well_produced,gravity_of_oil,casing_pressure,tubing_pressure,btu,method_of_operation,water_disposition,pwt_status,well_type,status,pool_code,reported_date
 2900035,Sep-2017,0.0,0.0,0.0,0.0,,,,,,,A,OG,6.0,0.0,2017-09-01
 2900035,Aug-2017,0.0,0.0,0.0,0.0,,,,,,,A,OG,6.0,0.0,2017-08-01
 2900035,Jul-2017,0.0,0.0,0.0,0.0,,,,,,,A,OG,6.0,0.0,2017-07-01
