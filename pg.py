@@ -12,21 +12,38 @@ cur = conn.cursor()
 today = '2019-02-01'
 
 try:
-    cur.execute("CREATE TABLE test (id serial PRIMARY KEY, num integer, data varchar);")
+    cur.execute('DROP TABLE IF EXISTS Table;')
+    #cur.execute("CREATE TABLE test (id serial PRIMARY KEY, num integer, data varchar);")
+    cur.execute('''CREATE TABLE test ("API Number" VARCHAR(255),
+                                 "Production Date" VARCHAR(255),
+                                "Oil Produced (bbl)" VARCHAR(255),
+                                "Water Produced (bbl)" VARCHAR (255), 
+                                "Gas Produced (Mcf)" VARCHAR(255), 
+                                "Days Well Produced" VARCHAR(255), 
+                                "Gravity of Oil" VARCHAR(255), 
+                                "Casing Pressure" VARCHAR(255), 
+                                "Tubing Pressure" VARCHAR(255), BTU VARCHAR(255), 
+                                "Method of Operation" VARCHAR(255), 
+                                "Water Disposition" VARCHAR(255), 
+                                "PWT Status" VARCHAR(255), 
+                                "Well Type" VARCHAR(255), 
+                                Status VARCHAR(255), 
+                                "Pool Code" VARCHAR(255), 
+                                "Reported Date" DATE);''')
 except:
     print("Nope")
 
 conn.commit() # <--- makes sure the change is shown in the database
 conn.close()
-#cur.close()
+# #cur.close()
 
 def pg_load_table(file_path, table_name, dbname, host, port, user, pwd):
     '''
     This function upload csv to a target table
     '''
     try:
-        conn = psycopg2.connect(dbname=welldata, host=host, port=port,\
-         user=taylorphillips, password=pwd)
+        conn = psycopg2.connect(dbname=dbname, host=host, port=port,\
+         user=user, password=pwd)
         print("Connecting to Database")
         cur = conn.cursor()
         f = open(file_path, "r")
@@ -45,7 +62,7 @@ def pg_load_table(file_path, table_name, dbname, host, port, user, pwd):
         sys.exit(1)
 
 # Execution Example
-file_path = '/Users/taylorphillips/galvanize/capstone/combined.csv'
+file_path = '/Users/taylorphillips/galvanize/capstone/test.csv'
 table_name = 'test'
 dbname = 'welldata'
 host = 'localhost'
