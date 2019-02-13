@@ -4,22 +4,10 @@ import selenium
 import time
 
 
-from bs4 import BeautifulSoup
-import requests
-
-import pandas as pd
-import numpy as np
-
-
-
 browser = webdriver.Chrome('/Users/taylorphillips/galvanize/capstone/chromedriver')
 browser.get("https://secure.conservation.ca.gov/WellSearch")
-
-webpage = requests.get('https://secure.conservation.ca.gov/WellSearch/?ActiveWell=True&ActiveOp=True&District=4&Command=Search&PgStart=0&PgLength=10&SortCol=6&SortDir=asc')
-
-bs_obj = BeautifulSoup(webpage.text, 'html.parser')
-#browser.find_element_by_xpath("//*[@id='select2-results-1']/li[4]").click()
 print("Select a District, quickly.")
+
 time.sleep(15)
 
 browser.find_element_by_name(name="Command").click()
