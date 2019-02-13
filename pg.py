@@ -33,17 +33,51 @@ try:
 except:
     print("Nope didn't work")
 
+try:
+    cur.execute('DROP TABLE IF EXISTS summary;')
+    cur.execute('''CREATE TABLE summary ("district_#" NUMERIC,
+                                "formatted_api_#" VARCHAR(255),
+                                operator_name VARCHAR(255),
+                                operator_code VARCHAR(255), 
+                                field_name VARCHAR(255), 
+                                field_code NUMERIC, 
+                                "api_#" NUMERIC PRIMARY KEY, 
+                                lease_name VARCHAR(255), 
+                                "well_#" VARCHAR(255), 
+                                well_status VARCHAR(255), 
+                                pool_welltypes VARCHAR(255), 
+                                section NUMERIC, 
+                                township VARCHAR(255), 
+                                range VARCHAR(255), 
+                                base_meridian VARCHAR(255), 
+                                area_code NUMERIC, 
+                                area_name VARCHAR(255),
+                                latitude NUMERIC,
+                                longitude NUMERIC,
+                                gissourcecode VARCHAR(255),
+                                datumcode VARCHAR(255),
+                                blmwell BOOLEAN,
+                                dryhole BOOLEAN,
+                                directional BOOLEAN,
+                                hydraulically_fractured VARCHAR(255),
+                                spud_date DATE,
+                                completion_date DATE,
+                                abandoned_date DATE);''')
+except:
+    print("Nope didn't work")
+
+
+
 conn.commit() # <--- makes sure the change is shown in the database
 conn.close()
-# #cur.close()
+# # #cur.close()
 
-def pg_load_table(file_path, table_name, dbname, host, port, user, pwd):
+def pg_load_table(file_path, table_name, dbname, host, user):
     '''
-    This function upload csv to a target table
+    upload csv to a target table
     '''
     try:
-        conn = psycopg2.connect(dbname=dbname, host=host, port=port,\
-         user=user, password=pwd)
+        conn = psycopg2.connect(dbname='welldata', user='taylorphillips', host='localhost')
         print("Connecting to Database")
         cur = conn.cursor()
         f = open(file_path, "r")
@@ -61,13 +95,7 @@ def pg_load_table(file_path, table_name, dbname, host, port, user, pwd):
         print("Error: {}".format(str(e)))
         sys.exit(1)
 
-# Execution Example
-file_path = '/Users/taylorphillips/galvanize/capstone/test.csv'
-table_name = 'test'
-dbname = 'welldata'
-host = 'localhost'
-port = ''
-user = 'taylorphillips'
-pwd = ''
-pg_load_table(file_path, table_name, dbname, host, port, user, pwd)
+
+pg_load_table('/Users/taylorphillips/galvanize/capstone/summary.csv', 'summary', 'welldata', 'localhost', 'taylorphillips')
+pg_load_table('/Users/taylorphillips/galvanize/capstone/test.csv', 'test', 'welldata', 'localhost', 'taylorphillips')
 
