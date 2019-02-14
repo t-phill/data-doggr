@@ -35,15 +35,15 @@ except:
 
 try:
     cur.execute('DROP TABLE IF EXISTS summary;')
-    cur.execute('''CREATE TABLE summary ("district_#" NUMERIC,
-                                "formatted_api_#" VARCHAR(255),
+    cur.execute('''CREATE TABLE summary ("district_num" NUMERIC,
+                                formatted_api_num VARCHAR(255),
                                 operator_name VARCHAR(255),
                                 operator_code VARCHAR(255), 
                                 field_name VARCHAR(255), 
                                 field_code NUMERIC, 
-                                "api_#" NUMERIC PRIMARY KEY, 
+                                api_num NUMERIC PRIMARY KEY, 
                                 lease_name VARCHAR(255), 
-                                "well_#" VARCHAR(255), 
+                                well_num VARCHAR(255), 
                                 well_status VARCHAR(255), 
                                 pool_welltypes VARCHAR(255), 
                                 section NUMERIC, 
@@ -58,7 +58,7 @@ try:
                                 datumcode VARCHAR(255),
                                 blmwell BOOLEAN,
                                 dryhole BOOLEAN,
-                                directional BOOLEAN,
+                                directional VARCHAR(255),
                                 hydraulically_fractured VARCHAR(255),
                                 spud_date DATE,
                                 completion_date DATE,
@@ -66,7 +66,7 @@ try:
 except:
     print("Nope didn't work")
 
-conn.commit() # <--- makes sure the change is shown in the database
+conn.commit()
 conn.close()
 cur.close()
 
