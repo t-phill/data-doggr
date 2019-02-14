@@ -47,16 +47,16 @@ cur.execute(
     '''
 )
 op_wells = psql.read_sql('''
-SELECT operator_name, COUNT(operator_name) FROM opsum
+SELECT operator_name, COUNT(operator_name) as well_count FROM opsum
 GROUP BY operator_name
-ORDER BY operator_name
+ORDER BY well_count DESC
 ''', conn)
 
 idle_wells = psql.read_sql('''
-SELECT operator_name, COUNT(operator_name) FROM opsum
+SELECT operator_name, COUNT(operator_name) AS idle_count FROM opsum
 WHERE days = 0
 GROUP BY operator_name
-ORDER BY operator_name
+ORDER BY idle_count DESC
 ''', conn)
 
 # test_wells = psql.read_sql('''
