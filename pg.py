@@ -53,7 +53,9 @@ try:
                             JOIN summary
                             ON ragg.api_number = summary."api_#"''', conn)
 
-    print(dataframe)
+    
+
+    data2 = psql.read_sql('select operator_name, (count(*)/1856) as idle_rate from op where dval = 0 group by operator_name', conn)
 
 except:
     print("Nope didn't work")
