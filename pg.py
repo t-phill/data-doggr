@@ -9,7 +9,6 @@ except:
     print("I am unable to connect to the database")
 cur = conn.cursor()
 
-today = '2019-02-01'
 
 # try:
 #     cur.execute('DROP TABLE IF EXISTS test;')
@@ -68,12 +67,20 @@ today = '2019-02-01'
 
 cur.execute(
     '''CREATE TABLE recent AS
-    SELECT api_number, oil_produced_bbl, water_produced_bbl, gas_produced_mcf, reported_date 
+    SELECT api_number, oil_produced_bbl, water_produced_bbl, gas_produced_mcf, reported_date, well_type
     FROM test
-    WHERE reported_date > date '2019-02-01' - interval '2 years';
+    WHERE reported_date > date '2019-02-01' - interval '3 years';
     '''
-    
 )
+
+cur.execute(
+    '''CREATE TABLE recent2 AS
+    SELECT api_number, well_type, SUM(oil_produced_bbl) as oil, SUM(water_produced_bbl) as water, SUM(gas_produced_mcf) as gas FROM recent GROUP BY api_number, well_type;
+    '''
+)
+#'''select api_number, well_type, sum(oil_produced_bbl) as oil, sum(water_produced_bbl) as water, sum(gas_produced_mcf) as gas from recent group by api_number, well_type;'''
+    
+
 
 
 

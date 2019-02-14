@@ -11,6 +11,7 @@ print("Select a District, quickly.")
 time.sleep(15)
 
 browser.find_element_by_name(name="Command").click()
+print("Navigate to desired page, quickly.")
 
 time.sleep(180)
 
