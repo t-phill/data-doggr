@@ -2,6 +2,7 @@ import psycopg2
 import pandas as pd
 import sys
 from datetime import datetime
+import pandas.io.sql as psql
 
 try:
     conn = psycopg2.connect(dbname='welldata', user='taylorphillips', host='localhost')
@@ -47,8 +48,18 @@ try:
     ON ragg.api_number = summary."api_#";
     '''
 )
+    dataframe = psql.read_sql('''SELECT ragg.api_number, summary.operator_name, ragg.well_type, ragg.oil, ragg.water, ragg.gas, ragg.dval
+                            FROM ragg
+                            JOIN summary
+                            ON ragg.api_number = summary."api_#"''', conn)
+
+    print(dataframe)
+
 except:
     print("Nope didn't work")
+
+
+
 
 
 
@@ -67,5 +78,5 @@ except:
 
 conn.commit() # <--- makes sure the change is shown in the database
 conn.close()
-cur.close()
+#cur.close()
 
