@@ -10,77 +10,113 @@ except:
 cur = conn.cursor()
 
 
-# try:
-#     cur.execute('DROP TABLE IF EXISTS test;')
-#     cur.execute('''CREATE TABLE test (api_number NUMERIC NOT NULL,
-#                                  production_date VARCHAR(255),
-#                                 oil_produced_bbl NUMERIC,
-#                                 water_produced_bbl NUMERIC, 
-#                                 gas_produced_mcf NUMERIC, 
-#                                 days_well_produced NUMERIC, 
-#                                 gravity_of_oil NUMERIC, 
-#                                 casing_pressure NUMERIC, 
-#                                 tubing_pressure NUMERIC, 
-#                                 btu NUMERIC, 
-#                                 method_of_operation NUMERIC, 
-#                                 water_disposition NUMERIC, 
-#                                 pwt_status VARCHAR(255), 
-#                                 well_type VARCHAR(255), 
-#                                 status NUMERIC, 
-#                                 pool_code NUMERIC, 
-#                                 reported_date DATE);''')
-# except:
-#     print("Nope didn't work")
+try:
+    cur.execute('DROP TABLE IF EXISTS test;')
+    cur.execute('''CREATE TABLE test (api_number NUMERIC NOT NULL,
+                                 production_date VARCHAR(255),
+                                oil_produced_bbl NUMERIC,
+                                water_produced_bbl NUMERIC, 
+                                gas_produced_mcf NUMERIC, 
+                                days_well_produced NUMERIC, 
+                                gravity_of_oil NUMERIC, 
+                                casing_pressure NUMERIC, 
+                                tubing_pressure NUMERIC, 
+                                btu NUMERIC, 
+                                method_of_operation NUMERIC, 
+                                water_disposition NUMERIC, 
+                                pwt_status VARCHAR(255), 
+                                well_type VARCHAR(255), 
+                                status NUMERIC, 
+                                pool_code NUMERIC, 
+                                reported_date DATE);''')
+except:
+    print("Nope didn't work")
 
-# try:
-#     cur.execute('DROP TABLE IF EXISTS summary;')
-#     cur.execute('''CREATE TABLE summary ("district_#" NUMERIC,
-#                                 "formatted_api_#" VARCHAR(255),
-#                                 operator_name VARCHAR(255),
-#                                 operator_code VARCHAR(255), 
-#                                 field_name VARCHAR(255), 
-#                                 field_code NUMERIC, 
-#                                 "api_#" NUMERIC PRIMARY KEY, 
-#                                 lease_name VARCHAR(255), 
-#                                 "well_#" VARCHAR(255), 
-#                                 well_status VARCHAR(255), 
-#                                 pool_welltypes VARCHAR(255), 
-#                                 section NUMERIC, 
-#                                 township VARCHAR(255), 
-#                                 range VARCHAR(255), 
-#                                 base_meridian VARCHAR(255), 
-#                                 area_code NUMERIC, 
-#                                 area_name VARCHAR(255),
-#                                 latitude NUMERIC,
-#                                 longitude NUMERIC,
-#                                 gissourcecode VARCHAR(255),
-#                                 datumcode VARCHAR(255),
-#                                 blmwell BOOLEAN,
-#                                 dryhole BOOLEAN,
-#                                 directional BOOLEAN,
-#                                 hydraulically_fractured VARCHAR(255),
-#                                 spud_date DATE,
-#                                 completion_date DATE,
-#                                 abandoned_date DATE);''')
-# except:
-#     print("Nope didn't work")
+try:
+    cur.execute('DROP TABLE IF EXISTS summary;')
+    cur.execute('''CREATE TABLE summary ("district_#" NUMERIC,
+                                "formatted_api_#" VARCHAR(255),
+                                operator_name VARCHAR(255),
+                                operator_code VARCHAR(255), 
+                                field_name VARCHAR(255), 
+                                field_code NUMERIC, 
+                                "api_#" NUMERIC PRIMARY KEY, 
+                                lease_name VARCHAR(255), 
+                                "well_#" VARCHAR(255), 
+                                well_status VARCHAR(255), 
+                                pool_welltypes VARCHAR(255), 
+                                section NUMERIC, 
+                                township VARCHAR(255), 
+                                range VARCHAR(255), 
+                                base_meridian VARCHAR(255), 
+                                area_code NUMERIC, 
+                                area_name VARCHAR(255),
+                                latitude NUMERIC,
+                                longitude NUMERIC,
+                                gissourcecode VARCHAR(255),
+                                datumcode VARCHAR(255),
+                                blmwell BOOLEAN,
+                                dryhole BOOLEAN,
+                                directional BOOLEAN,
+                                hydraulically_fractured VARCHAR(255),
+                                spud_date DATE,
+                                completion_date DATE,
+                                abandoned_date DATE);''')
+except:
+    print("Nope didn't work")
 
-cur.execute(
-    '''CREATE TABLE recent AS
+try:
+    cur.execute('DROP TABLE IF EXISTS recent;')
+    cur.execute(
+    '''
+    CREATE TABLE recent AS
     SELECT api_number, oil_produced_bbl, water_produced_bbl, gas_produced_mcf, reported_date, well_type
     FROM test
-    WHERE reported_date > date '2019-02-01' - interval '3 years';
+    WHERE reported_date > date '2019-02-01' - interval '2 years';
     '''
 )
+except:
+    print("Nope didn't work")
 
-cur.execute(
-    '''CREATE TABLE recent2 AS
-    SELECT api_number, well_type, SUM(oil_produced_bbl) as oil, SUM(water_produced_bbl) as water, SUM(gas_produced_mcf) as gas FROM recent GROUP BY api_number, well_type;
+try:
+    cur.execute('DROP TABLE IF EXISTS recentagg;')
+    cur.execute(
+    '''
+    CREATE TABLE recentagg AS
+    SELECT api_number, well_type, SUM(oil_produced_bbl) as oil, 
+    SUM(water_produced_bbl) as water, 
+    SUM(gas_produced_mcf) as gas 
+    FROM recent 
+    GROUP BY api_number, well_type;
     '''
 )
+except:
+    print("Nope didn't work")
+try:
+    cur.execute('DROP TABLE IF EXISTS sumprodbyoperator;')
+    cur.execute(
+    '''CREATE TABLE sumprodbyoperator AS
+    SELECT recentagg.api_number, summary.operator_name, recentagg.well_type, recentagg.oil, recentagg.water, recentagg.gas 
+    FROM recentagg
+    JOIN summary
+    ON recentagg.api_number = summary."api_#";
+    '''
+)
+except:
+    print("Nope didn't work")
+
+
+
 #'''select api_number, well_type, sum(oil_produced_bbl) as oil, sum(water_produced_bbl) as water, sum(gas_produced_mcf) as gas from recent group by api_number, well_type;'''
-    
-
+# cur.execute(
+#     '''CREATE TABLE fulljoin AS
+#     SELECT *
+#     FROM test
+#     FULL OUTER JOIN summary
+#     ON test.api_number = summary."api_#";
+#     '''
+# )
+# #******pd.read_sql********
 
 
 
@@ -112,6 +148,6 @@ def pg_load_table(file_path, table_name, dbname, host, user):
         sys.exit(1)
 
 
-#pg_load_table('/Users/taylorphillips/galvanize/capstone/summary.csv', 'summary', 'welldata', 'localhost', 'taylorphillips')
-#pg_load_table('/Users/taylorphillips/galvanize/capstone/test.csv', 'test', 'welldata', 'localhost', 'taylorphillips')
+pg_load_table('/Users/taylorphillips/galvanize/capstone/summary.csv', 'summary', 'welldata', 'localhost', 'taylorphillips')
+pg_load_table('/Users/taylorphillips/galvanize/capstone/test.csv', 'test', 'welldata', 'localhost', 'taylorphillips')
 
