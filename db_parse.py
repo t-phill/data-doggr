@@ -22,14 +22,14 @@ def parse_excel(files_dir):
 
     combined = combined[pd.notnull(combined['well_type'])]
 
-    combined.to_csv("test.csv", index=False)
+    combined.to_csv("production.csv", index=False)
 
     return combined
 
 
 def sum_parse():
 
-    excel_names = glob.glob("/Users/taylorphillips/galvanize/capstone/*.xlsx")
+    excel_names = glob.glob("/Users/taylorphillips/galvanize/capstone/sum_file/*.xlsx")
 
     excels = [pd.ExcelFile(name) for name in excel_names]
 
@@ -46,7 +46,8 @@ def sum_parse():
     return combined
 
 sum_parse()
-parse_excel('/Users/taylorphillips/galvanize/capstone/test_files/*.xlsx')
+parse_excel('/Users/taylorphillips/Downloads/*.xlsx')
+
 
 
 #combined.to_excel("c.xlsx", header=True)
