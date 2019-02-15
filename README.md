@@ -4,6 +4,8 @@
 
 "DOGGR has proposed updated regulations to improve maintenance of idle wells. The regulations specify far more rigorous testing requirements that will better protect public safety and the environment from the potential threats posed by idle wells. The regulations will require idle wells be tested and, if necessary, repaired, or plugged and abandoned."
 
+-https://www.conservation.ca.gov/dog/idle_well
+
 
 The California Division of Oil, Gas, and Geothermal Resources claims there are approximately 30,000 idle wells in the state. 
 
