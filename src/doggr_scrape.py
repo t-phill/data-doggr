@@ -24,7 +24,7 @@ def prod_export():
     #download production data
     return browser.find_element_by_id("ButtonExportProdToExcel").click()
 
-#make functional later
+#make it work later
 # def set_page(p):
 #     browser.find_element_by_xpath(f"//*[@id='myDataTable_wrapper']/div[1]/div[4]/ul/li[{p}]/a").click()
 #     return 
