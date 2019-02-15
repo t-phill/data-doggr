@@ -6,6 +6,24 @@
 
 -https://www.conservation.ca.gov/dog/idle_well
 
+"Idle wells are wells which are not in use for production, injection, or other purposes, but also have not been permanently sealed.  DOGGR has changed the definition of idle wells from five years of no productivity to two years of no productivity, in response to legislation.  Approximately 29,000 wells now fall into that category.  Idle wells are the focus of current regulation because wells that are idle for a prolonged period of time can deteriorate if not maintained, and then could become a potential public safety or environmental problem.  Since 1977, California has permanently sealed about 1,400 wells lacking a responsible operator at a cost of $29.5 million, according to DOGGR’s reports."
 
-The California Division of Oil, Gas, and Geothermal Resources claims there are approximately 30,000 idle wells in the state. 
+-https://www.californiaenvironmentallawblog.com/oil-and-gas/doggr-issues-revised-regulations-for-uic-and-idle-wells/
+
+
+Questions raised:  
+
+    Does 30,000 idle wells seem reasonable based on the State's new definition of an idle well?
+    
+    Is 30,000 idle wells reasonable for more lenient definitions of inactivity (10 years)?
+    
+    The State has needed to plugged and abandoned 1,400 wells since 1977. Who is to blame?
+    
+
+    
+    
+
+
+
+
 
