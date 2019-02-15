@@ -68,7 +68,7 @@ except:
 
 conn.commit()
 conn.close()
-cur.close()
+#cur.close()
 
 
 
@@ -96,6 +96,6 @@ def pg_load_table(file_path, table_name, dbname, host, user):
         sys.exit(1)
 
 
-pg_load_table('/Users/taylorphillips/galvanize/capstone/summary.csv', 'summary', 'welldata', 'localhost', 'taylorphillips')
-pg_load_table('/Users/taylorphillips/galvanize/capstone/production.csv', 'production', 'welldata', 'localhost', 'taylorphillips')
+# pg_load_table('/Users/taylorphillips/galvanize/capstone/summary.csv', 'summary', 'welldata', 'localhost', 'taylorphillips')
+# pg_load_table('/Users/taylorphillips/galvanize/capstone/production.csv', 'production', 'welldata', 'localhost', 'taylorphillips')
 
