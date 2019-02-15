@@ -15,7 +15,6 @@ def parse_excel(files_dir):
     '''
     #list of file names
     excel_names = glob.glob(f"{files_dir}")
-    print(len(excel_names))
 
     #creating excelfile object for each .xlsx file
     excels = [pd.ExcelFile(name) for name in excel_names]
