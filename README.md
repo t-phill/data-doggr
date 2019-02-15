@@ -21,7 +21,7 @@ Questions raised:
     
 What Data is available:
 
-        The DOGGR website contains a summary documenting each well in California. Assuming that the summary is correct and all wells are accounted for(not a fair assumption). We can make statements on the population size n.
+        The DOGGR website contains a summary documenting each well in California. Assuming that the summary is correct and all wells are accounted for(not a fair assumption). We can make statements on the population size n(103,450 wells).
         
         Each well has a unique API number specific to it. If a well is ACTIVE (not plugged or abandoned), the production history by month (present~1954) is available in a downloadable excel file. 
         
@@ -30,13 +30,17 @@ Experimental Designs:
 
     1) (Over 3 years of inactivity from 2-1-2019 means the well is idle)
 
-    Null Hypothesis: H0 mean = 30000 
-    Alt. Hypothesis: HA mean > 30000 
+    Null Hypothesis: H0 mean = 30000 , p = 30000/103450
+    Alt. Hypothesis: HA mean > 30000 ,  p = sample idle wells/sample total
+    alpha = .05
+
+
     
     2) (Over 10 years of inactivity from 2-1-2019 means the well is idle)
     
-    Null Hypothesis: H0 mean = 30000 
-    Alt. Hypothesis: HA mean > 30000 
+    Null Hypothesis: H0 mean = 30000 , p = 30000/103450
+    Alt. Hypothesis: HA mean > 30000 , p = sample idle wells/sample total
+    alpha = .05
     
 Dependencies and Execution:
 
@@ -47,13 +51,13 @@ Dependencies and Execution:
     
     1) Clone the repository
         ### If you want to scrape additional well data
-        1a) OPTIONAL $.. python3.6 doggr_scrape.py #select desired search parameters
-          $..  page_scrape() .. to begin downloading production history
-          ###production.csv contains a sample of 2449 wells and their production 
+        1a) $.. python3.6 doggr_scrape.py #select desired search parameters
+            $..  page_scrape() .. to begin downloading production history
+            ###production.csv already contains a sample of 2449 wells and their production 
         
         1b) OPTIONAL $.. python3.6 db_parse.py 
             $.. sum_parse()
-            $.. parse_excel('PATH/TO/DOWNLOADED/EXCEL/PRODUCTION/*.xlsx')
+            $.. parse_excel('PATH/TO/DOWNLOADED/EXCEL/FILES/*.xlsx')
             
     2) $.. python3.6 load_post.py
         2a) $.. pg_load_table('PATH/TO/SUMMARY.CSV',
