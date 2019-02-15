@@ -68,7 +68,5 @@ def sum_parse():
 
     return combined
 
-#sum_parse()
-#parse_excel('/Users/taylorphillips/Downloads/*.xlsx')
 
 
