@@ -51,8 +51,8 @@ def sum_parse():
 
     export: csv file 'summary.csv'
     '''
-    
-    excel_names = glob.glob("/Users/taylorphillips/galvanize/capstone/summary_file/*.xlsx")
+
+    excel_names = glob.glob("/Users/taylorphillips/galvanize/capstone/data/*.xlsx")
 
     excels = [pd.ExcelFile(name) for name in excel_names]
 
