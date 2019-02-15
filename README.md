@@ -17,7 +17,29 @@ Questions raised:
     
     Is 30,000 idle wells reasonable for more lenient definitions of inactivity (10 years)?
     
-    The State has needed to plugged and abandoned 1,400 wells since 1977. Who is to blame?
+    The State war required to plugged and abandoned 1,400 wells since 1977. Who is to blame?
+    
+What Data is available:
+
+        The DOGGR website contains a summary documenting each well in California. Assuming that the summary is correct and all wells are accounted for(not a fair assumption). We can make statements on the population size n.
+        
+        Each well has a unique API number specific to it. If a well is ACTIVE (not plugged or abandoned), the production history by month (present~1954) is available in a downloadable excel file. 
+        
+
+Experimental Designs:
+
+    1) (Over 3 years of inactivity from 2-1-2019 means the well is idle)
+
+    Null Hypothesis: H0 mean = 30000 
+    Alt. Hypothesis: HA mean > 30000 
+    
+    2) (Over 10 years of inactivity from 2-1-2019 means the well is idle)
+    
+    Null Hypothesis: H0 mean = 30000 
+    Alt. Hypothesis: HA mean > 30000 
+    
+Dependencies and Execution:
+
     
 
     
