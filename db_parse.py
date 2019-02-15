@@ -29,7 +29,7 @@ def parse_excel(files_dir):
 
 def sum_parse():
 
-    excel_names = glob.glob("/Users/taylorphillips/galvanize/capstone/sum_file/*.xlsx")
+    excel_names = glob.glob("/Users/taylorphillips/galvanize/capstone/summary_file/*.xlsx")
 
     excels = [pd.ExcelFile(name) for name in excel_names]
 

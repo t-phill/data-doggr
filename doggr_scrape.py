@@ -14,8 +14,7 @@ time.sleep(30)
 browser.find_element_by_name(name="Command").click()
 
 #Time delay to select page number
-print("Navigate to desired page, quickly.")
-time.sleep(180)
+print("Navigate to desired page, call function 'page_scrape()' in console.")
 
 def api_click(n):
     #n = row number
@@ -25,9 +24,10 @@ def prod_export():
     #download production data
     return browser.find_element_by_id("ButtonExportProdToExcel").click()
 
-def set_page(p):
-    browser.find_element_by_xpath(f"//*[@id='myDataTable_wrapper']/div[1]/div[4]/ul/li[{p}]/a").click()
-    return 
+#make functional later
+# def set_page(p):
+#     browser.find_element_by_xpath(f"//*[@id='myDataTable_wrapper']/div[1]/div[4]/ul/li[{p}]/a").click()
+#     return 
 
 def search_page():
     #return to search list
@@ -39,13 +39,14 @@ def next_page():
 
 
 def page_scrape():
+    #10 wells per page
     for i in range(1,11):
         try:
             time.sleep(10)
             api_click(i)
             time.sleep(10)
             prod_export()
-            time.sleep(8)
+            time.sleep(5)
             search_page()
             time.sleep(15)
         except:
@@ -53,13 +54,12 @@ def page_scrape():
             search_page()
             i+=1
             continue
-        i+=1
+        i += 1 
         if i == 11:
             time.sleep(10)
             next_page()
             time.sleep(10)
             page_scrape()
+        else:
+            continue
         
-time.sleep(10)
-
-page_scrape()
