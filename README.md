@@ -7,4 +7,3 @@
 
 The California Division of Oil, Gas, and Geothermal Resources claims there are approximately 30,000 idle wells in the state. 
 
-I will test this assessment. 

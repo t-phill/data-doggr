@@ -3,16 +3,18 @@ from selenium.webdriver.common.by import By
 import selenium
 import time
 
-
+#Path to your ChromeDriver executable
 browser = webdriver.Chrome('/Users/taylorphillips/galvanize/capstone/chromedriver')
+#Navigation to DOGGR well search page
 browser.get("https://secure.conservation.ca.gov/WellSearch")
 print("Select a District, quickly.")
+time.sleep(30)
 
-time.sleep(15)
-
+#Clicks on Search
 browser.find_element_by_name(name="Command").click()
-print("Navigate to desired page, quickly.")
 
+#Time delay to select page number
+print("Navigate to desired page, quickly.")
 time.sleep(180)
 
 def api_click(n):
@@ -32,9 +34,9 @@ def search_page():
     return browser.find_element_by_xpath("//*[@id='navbar']/ul[2]/li/a").click()
 
 def next_page():
+    #navigate to next page
     return browser.find_element_by_xpath("//*[@id='myDataTable_wrapper']/div[1]/div[4]/ul/li[10]/a").click()
 
-time.sleep(7)
 
 def page_scrape():
     for i in range(1,11):
