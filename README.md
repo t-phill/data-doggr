@@ -17,7 +17,7 @@ Questions raised:
     
     Is 30,000 idle wells reasonable for more lenient definitions of inactivity (10 years)?
     
-    The State war required to plugged and abandoned 1,400 wells since 1977. Who is to blame?
+    The State was required to plugged and abandoned 1,400 wells since 1977. Who is to blame?
     
 What Data is available:
 
@@ -40,6 +40,30 @@ Experimental Designs:
     
 Dependencies and Execution:
 
+    ChromeDriver
+    python3.6 or higher
+    other..
+    
+    
+    1) Clone the repository
+        ### If you want to scrape additional well data
+        1a) OPTIONAL $.. python3.6 doggr_scrape.py #select desired search parameters
+          $..  page_scrape() .. to begin downloading production history
+          ###production.csv contains a sample of 2449 wells and their production 
+        
+        1b) OPTIONAL $.. python3.6 db_parse.py 
+            $.. sum_parse()
+            $.. parse_excel('PATH/TO/DOWNLOADED/EXCEL/PRODUCTION/*.xlsx')
+            
+    2) $.. python3.6 load_post.py
+        2a) $.. pg_load_table('PATH/TO/SUMMARY.CSV',
+               'summary', 'databasename', 'host', 'username')
+            $.. pg_load_table('PATH/TO/PRODUCTION.CSV',
+               'production', 'databasename', 'host', 'username')
+    
+    3) $.. python3.6 pg.py
+    
+    
     
 
     
