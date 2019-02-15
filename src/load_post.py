@@ -10,7 +10,7 @@ except:
     print("I am unable to connect to the database")
 cur = conn.cursor()
 
-#instantiate production table
+#define parameters for psql production table
 try:
     cur.execute('DROP TABLE IF EXISTS production;')
     cur.execute('''CREATE TABLE production (api_number NUMERIC NOT NULL,
@@ -33,7 +33,7 @@ try:
 except:
     print("Nope didn't work")
 
-#instantiate summary table
+#define parameters for psql summary table
 try:
     cur.execute('DROP TABLE IF EXISTS summary;')
     cur.execute('''CREATE TABLE summary ("district_num" NUMERIC,
