@@ -10,7 +10,7 @@ except:
     print("I am unable to connect to the database")
 cur = conn.cursor()
 
-
+#instantiate production table
 try:
     cur.execute('DROP TABLE IF EXISTS production;')
     cur.execute('''CREATE TABLE production (api_number NUMERIC NOT NULL,
@@ -33,6 +33,7 @@ try:
 except:
     print("Nope didn't work")
 
+#instantiate summary table
 try:
     cur.execute('DROP TABLE IF EXISTS summary;')
     cur.execute('''CREATE TABLE summary ("district_num" NUMERIC,
@@ -74,7 +75,7 @@ conn.close()
 
 def pg_load_table(file_path, table_name, dbname, host, user):
     '''
-    upload csv to a target table
+    upload .csv to a target table
     '''
     try:
         conn = psycopg2.connect(dbname='welldata', user='taylorphillips', host='localhost')
